@@ -1,0 +1,13 @@
+1.1.001:Efectivo
+1.1.002:Banco
+1.1.003:Mercaderia
+1.1.004:Iva credito Fiscal
+1.1.005:Cuentas por cobrar
+1.2.002:Muebles y equipos computacionales
+2.1.001:Cuentas por pagar
+2.1.002:Iva debito fiscal
+3.1:Capital
+3.2:Utilidad del ejecicio
+4.1.1:ventas
+5.1.001:Costo de ventas
+5.1.002:Arriendo
