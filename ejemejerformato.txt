@@ -1,0 +1,16 @@
+0301
+registro aporte de capital por juan olguin
+Efectivo 8000000
+Capital 8000000
+0401
+compra de mobiliario
+Mobiliario 500000 ICF 95000
+Efectivo 595000
+0601
+compra de 50 unidades de mercaderia($100000 c/u)
+Mercaderia 5000000 ICF 950000
+Efectivo 5950000
+1901
+venta de 20 unidades de mercaderia
+Efectivo 3570000
+IDF 570000 ventas 3000000

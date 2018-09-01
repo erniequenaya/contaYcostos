@@ -1,0 +1,13 @@
+11001:Efectivo
+11002:Banco
+11003:Mercaderia
+11004:ICF
+11005:CxC
+12002:Muebles y equipos computacionales
+21001:CxP
+21002:IDF
+31001:Capital
+32001:Utilidad del ejecicio
+41001:ventas
+51001:CV
+51002:Arriendo
