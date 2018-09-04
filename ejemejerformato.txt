@@ -18,3 +18,7 @@ Efectivo 5950000
 Venta de 20 unidades de mercaderia
 Efectivo 3570000
 IDF 570000 ventas 3000000
+30012018
+Glosa: Pago de arriendo
+Arriendo 50000
+Efectivo 50000

@@ -1,0 +1,42 @@
+--------------
+select * from b8columna
+--------------
+
++----------+------------+----------+---------+---------+----------+---------+---------+---------+----------+
+| idcuenta | nomcuenta  | debe     | haber   | deudor  | acreedor | activo  | pasivo  | perdida | ganancia |
++----------+------------+----------+---------+---------+----------+---------+---------+---------+----------+
+|    11001 | Efectivo   | 11570000 | 6895000 | 4675000 |        0 | 4675000 |       0 |       0 |        0 |
+|    11003 | Mercaderia |  5000000 |       0 | 5000000 |        0 | 5000000 |       0 |       0 |        0 |
+|    11004 | ICF        |  1100882 |       0 | 1100882 |        0 | 1100882 |       0 |       0 |        0 |
+|    12002 | Mobiliario |   794118 |       0 |  794118 |        0 |  794118 |       0 |       0 |        0 |
+|    21002 | IDF        |        0 |  570000 |       0 |   570000 |       0 |  570000 |       0 |        0 |
+|    31001 | Capital    |        0 | 8000000 |       0 |  8000000 |       0 | 8000000 |       0 |        0 |
+|    41001 | ventas     |        0 | 3000000 |       0 |  3000000 |       0 |       0 |       0 |  3000000 |
++----------+------------+----------+---------+---------+----------+---------+---------+---------+----------+
+7 rows in set (0.00 sec)
+
+Bye
+--------------
+select sum(debe) as totalDebe, sum(haber) as totalHaberes, sum(deudor) as totalDeudor, sum(acreedor) as totalAcreedor, sum(activo) as totalActivos, sum(pasivo) as totalPasivos, sum(perdida) as totalPerdida, sum(ganancia) as totalGanancia from b8columna
+--------------
+
++-----------+--------------+-------------+---------------+--------------+--------------+--------------+---------------+
+| totalDebe | totalHaberes | totalDeudor | totalAcreedor | totalActivos | totalPasivos | totalPerdida | totalGanancia |
++-----------+--------------+-------------+---------------+--------------+--------------+--------------+---------------+
+|  18465000 |     18465000 |    11570000 |      11570000 |     11570000 |      8570000 |            0 |       3000000 |
++-----------+--------------+-------------+---------------+--------------+--------------+--------------+---------------+
+1 row in set (0.00 sec)
+
+Bye
+--------------
+SELECT (SELECT sum(activo) FROM b8columna) - (SELECT SUM(pasivo) from b8columna) as ResultadoDelEjercicio, (SELECT sum(ganancia) FROM b8columna) - (SELECT SUM(perdida) from b8columna) as ResultadoDelEjercicio2
+--------------
+
++-----------------------+------------------------+
+| ResultadoDelEjercicio | ResultadoDelEjercicio2 |
++-----------------------+------------------------+
+|               3000000 |                3000000 |
++-----------------------+------------------------+
+1 row in set (0.00 sec)
+
+Bye

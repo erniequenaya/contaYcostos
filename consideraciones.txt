@@ -1,0 +1,6 @@
+plan de cuentas minimo:
+costo venta como 'CV'
+venta como 'ventas'
+al menos un activo y pasivo corriente
+correr reportes 2 veces
+
