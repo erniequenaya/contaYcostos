@@ -1,9 +1,0 @@
---------------
-select sum(debe) as sumdebe from asientos where cuentaDebe='Efectivo'
---------------
-
-sumdebe
-11570000
-1 row in set
-
-Bye

@@ -1,22 +1,24 @@
 Balance general
 Activos
 Activo corriente
-	Efectivo			4625000
-	Mercaderia			5000000
+	Efectivo			8433000
+	Banco			476000
+	Mercaderia			1000000
 	ICF			1100882
-Total activo corriente 	10725882
+	CxC			476000
+Total activo corriente 	11485882
 Activo no corriente
 	Mobiliario			794118
 Total activo fijo 		794118
-Total activo			11520000
+Total activo			12280000
 Pasivo corriente
-	IDF			570000
-Total pasivo corriente 	570000
+	IDF			1330000
+Total pasivo corriente 	1330000
 Pasivo a largo plazo 
 Total pasivo a largo plazo		0
-Total pasivo			570000
+Total pasivo			1330000
 Patrimonio
 	Capital				8000000
 Utilidad del ejercicio	2950000
 Total patrimonio		10950000
-Total pasivo y patrimonio	11520000
+Total pasivo y patrimonio	12280000

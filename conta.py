@@ -19,7 +19,7 @@ def conDB():
  
 
 if(op[1] == '--help'):
-    print('\t--plan\t\t{fichero-cuentas} Ingresar plan de cuenta\n\t--diario\tVisualizar libro diario\n\t--asiento\t{fichero-de-movimientos} Ingresar movimientos\n\t--cuentasT\tCrear mayor\n\t--bgeneral\tEmitir balance general\n\t--resultado\tEmitir estado de resultado\n\t--b8columnas\tEmitir balance de 8 columnas')
+    print('\t--plan\t\t{fichero-cuentas} <plan> Ingresar plan de cuenta\n\t--diario\tVisualizar libro diario\n\t--asiento\t{fichero-de-movimientos} Ingresar movimientos\n\t--reportes\tResumir en cuentas T y generar otros reportes\n\t--bGeneral\tEmitir balance general\n\t--resultado\tEmitir estado de resultado\n\t--b8columnas\tEmitir balance de 8 columnas')
 if(op[1] == '--plan'):
     #cuentas=os.system("sed 's/.*[^a-zA-Z\ ]//' "+op[2])
     #para hacer el plan de cuenta utilizable
@@ -142,7 +142,7 @@ if(op[1] == '--diario'):
     pqy=prequery
     print(prequery)
     os.system(prequery+"\'select * from asientos;\' -v -v -v | sed -E \'s/NULL/\    /g\' > diario.txt && cat diario.txt")
-if(op[1] == '--cuentasT'):
+if(op[1] == '--reportes'):
     mydb = mysql.connector.connect(
         host="localhost",
         user="pma",
@@ -268,8 +268,9 @@ if(op[1] == '--cuentasT'):
                         #pqy="update b8columna set nomcuenta='"+ctas[j]+"',debe="+str(resumen[m+1])+" where idcuenta="+str(i)
                         #print(pqy)
                         pqy=prequery+' " '+pqy+';"'
-                        os.system(pqy)
+                        #os.system(pqy)
                         #para balance general
+                        os.system(pqy+" 2>/dev/zero")
                         bgeneral[0]+=resumen[m+3]
                         #print(bgeneral[0])
                         os.system("printf '\t"+ctas[j]+"\t\t\t"+str(resumen[m+3])+"\n' >> balanceGeneral.txt")
@@ -288,7 +289,7 @@ if(op[1] == '--cuentasT'):
                         #print(resumen[m+1])
                         pqy="insert into b8columna (idcuenta,nomcuenta,debe,haber,deudor,activo) values ("+str(i)+",'"+ctas[j]+"',"+str(resumen[m+1])+","+str(resumen[m+2])+","+str(resumen[m+3])+","+str(resumen[m+3])+")"
                         pqy=prequery+' " '+pqy+';"'
-                        os.system(pqy)       
+                        os.system(pqy+" 2>/dev/zero")       
                         #para balance general, bgeneral puede ser reemplazado por un simple int
                         bgeneral[1]+=resumen[m+3]
                         #print(bgeneral[-1])
@@ -308,7 +309,7 @@ if(op[1] == '--cuentasT'):
                         #print(resumen[m+1])
                         pqy="insert into b8columna (idcuenta,nomcuenta,debe,haber,acreedor,pasivo) values ("+str(i)+",'"+ctas[j]+"',"+str(resumen[m+1])+","+str(resumen[m+2])+","+str(resumen[m+3])+","+str(resumen[m+3])+")"
                         pqy=prequery+' " '+pqy+';"'
-                        os.system(pqy)
+                        os.system(pqy+" 2>/dev/zero")
                         #para balance general, bgeneral puede ser reemplazado por un simple int
                         bgeneral[2]+=resumen[m+3]
                         os.system("printf '\t"+ctas[j]+"\t\t\t"+str(resumen[m+3])+"\n' >> balanceGeneral.txt")
@@ -327,7 +328,7 @@ if(op[1] == '--cuentasT'):
                         #print(resumen[m+1])
                         pqy="insert into b8columna (idcuenta,nomcuenta,debe,haber,deudor,pasivo) values ("+str(i)+",'"+ctas[j]+"',"+str(resumen[m+1])+","+str(resumen[m+2])+","+str(resumen[m+3])+","+str(resumen[m+3])+")"
                         pqy=prequery+' " '+pqy+';"'
-                        os.system(pqy)
+                        os.system(pqy+" 2>/dev/zero")
                         #para balance general
                         bgeneral[3]+=resumen[m+3]
                         #print(bgeneral)
@@ -348,7 +349,7 @@ if(op[1] == '--cuentasT'):
                         #print(resumen[m+1])
                         pqy="insert into b8columna (idcuenta,nomcuenta,debe,haber,acreedor,pasivo) values ("+str(i)+",'"+ctas[j]+"',"+str(resumen[m+1])+","+str(resumen[m+2])+","+str(resumen[m+3])+","+str(resumen[m+3])+")"
                         pqy=prequery+' " '+pqy+';"'
-                        os.system(pqy)
+                        os.system(pqy+" 2>/dev/zero")
                         #para balance general
                         bgeneral[4]+=resumen[m+3]
                         #print(bgeneral)
@@ -381,7 +382,7 @@ if(op[1] == '--cuentasT'):
                         #print(resumen[m+1])
                         pqy="insert into b8columna (idcuenta,nomcuenta,debe,haber,acreedor,ganancia) values ("+str(i)+",'"+ctas[j]+"',"+str(resumen[m+1])+","+str(resumen[m+2])+","+str(resumen[m+3])+","+str(resumen[m+3])+")"
                         pqy=prequery+' " '+pqy+';"'
-                        os.system(pqy)
+                        os.system(pqy+" 2>/dev/zero")
                         bgeneral[5]+=resumen[m+3]
                     m+=1  
                     #para CER
@@ -399,7 +400,7 @@ if(op[1] == '--cuentasT'):
                         #print(resumen[m+1])
                         pqy="insert into b8columna (idcuenta,nomcuenta,debe,haber,deudor,perdida) values ("+str(i)+",'"+ctas[j]+"',"+str(resumen[m+1])+","+str(resumen[m+2])+","+str(resumen[m+3])+","+str(resumen[m+3])+")"
                         pqy=prequery+' " '+pqy+';"'
-                        os.system(pqy)
+                        os.system(pqy+" 2>/dev/zero")
                         bgeneral[6]+=resumen[m+3]
                     m+=1   
                     #ctas costo venta y venta tienen que ser 'CV' y 'ventas' o fallara
@@ -429,6 +430,11 @@ if(op[1] == '--cuentasT'):
     tmpres=[int(item[0]) for item in res]
     print(tmpres)
     #os.system("printf 'Nro\t\t|Cuenta\t\t\t\t\t\t|Debe\t\t|Haber\t\t|Deudor\t\t|Acreedor\t\t|Activos\t\t|Pasivos\t\t|Perdida\t\t|Ganancia\t\t' > b8columnas.txt")
-    
+if(op[1]=="--b8columnas"):
+    prequery=conDB()
+    os.system(prequery+" \'select * from b8columna;\'") 
+    os.system(prequery+' \"select sum(debe) as totalDebe, sum(haber) as totalHaberes, sum(deudor) as totalDeudor, sum(acreedor) as totalAcreedor, sum(activo) as totalActivos, sum(pasivo) as totalPasivos, sum(perdida) as totalPerdida, sum(ganancia) as totalGanancia from b8columna;\"')
+if(op[1]=="--bGeneral"):
+    os.system("cat balanceGeneral.txt")
  
  
