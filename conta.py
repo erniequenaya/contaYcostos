@@ -359,6 +359,7 @@ if(op[1] == '--reportes'):
                         #print(ctas[j+1])
                     m+=1   
                         #os.system(pqy)
+                        #para balance general
                 if(ids[j+1]>32000):
                     #res=os.system(prequery+"\'SELECT (SELECT sum(activo) FROM b8columna) - (SELECT SUM(pasivo) from b8columna) as ResultadoDelEjercicio;\'")
                     mycursor.execute("SELECT (SELECT sum(activo) FROM b8columna) - (SELECT SUM(pasivo) from b8columna) as ResultadoDelEjercicio")
@@ -384,11 +385,15 @@ if(op[1] == '--reportes'):
                         pqy=prequery+' " '+pqy+';"'
                         os.system(pqy+" 2>/dev/zero")
                         bgeneral[5]+=resumen[m+3]
+                        if(i==41001):
+                            #print(ctas[j+1])
+                            #print(bgeneral[5])
+                            os.system("printf 'Estado de resultado\nVentas\t\t"+str(bgeneral[5])+"' > CER.txt")
+                            utilBruta=bgeneral[5]
+                           # os.system("printf '\nCosto venta\t\t"+str(resumen[m+3])+"\nUtilidad bruta\t"+str(utilBruta)+"\nGastos fijos\n' >> CER.txt")
                     m+=1  
-                    #para CER
-                if(ctas[j+1]=='ventas'):
-                    os.system("printf 'Estado de resultado\nVentas\t\t"+bgeneral[5]+"' > CER.txt")
-        if(i>50000):
+                 #para CER
+        if(i>50000 and i <60000):
             #perdida
             if(i>51000):
                 #costos y arriendo¿¿¿??'
@@ -396,28 +401,44 @@ if(op[1] == '--reportes'):
                 m=0
                 for k in resumen:
                     if (str(k)==ctas[j]):
+                        #print(ctas[j])
                         print(k+" tiene registro y es perdida")
                         #print(resumen[m+1])
                         pqy="insert into b8columna (idcuenta,nomcuenta,debe,haber,deudor,perdida) values ("+str(i)+",'"+ctas[j]+"',"+str(resumen[m+1])+","+str(resumen[m+2])+","+str(resumen[m+3])+","+str(resumen[m+3])+")"
                         pqy=prequery+' " '+pqy+';"'
                         os.system(pqy+" 2>/dev/zero")
-                        bgeneral[6]+=resumen[m+3]
+                        bgeneral[7]+=resumen[m+3]
+                        if(i==51001):
+                            bgeneral[6]=resumen[m+3]
+                            utilBruta-=resumen[m+3]
+                            os.system("printf '\nCosto venta\t\t"+str(resumen[m+3])+"\nUtilidad bruta\t"+str(utilBruta)+"\nGastos fijos\n' >> CER.txt")
+                            #print(bgeneral)
+                        if(i>51001):
+                            bgeneral[7]-=bgeneral[6]
+                            print(str(bgeneral[7]))
+                            #os.system=("printf '"+str(bgeneral[7]-bgeneral[6])+"\n' >> CER.txt")
                     m+=1   
+                   #os.system("printf 'Estado de resultado\nVentas\t\t"+str(bgeneral[5])+"' > CER.txt")
+                    #os.system("printf '\nCosto venta\t\t"+str(resumen[m+3])+"\nUtilidad bruta\t"+str(utilBruta)+"\nGastos fijos\n' > CER.txt")
                     #ctas costo venta y venta tienen que ser 'CV' y 'ventas' o fallara
-                if(ctas[j+1]=='CV'):
-                    utilBruta=bgeneral[5]-resumen[m+3]
-                    os.system("printf '\nCosto venta\t\t"+str(resumen[m+3])+"\nUtilidad bruta\t"+str(utilBruta)+"\nGastos fijos\n' > CER.txt")
-                else:
-                    #print(ctas[j+1])
-                    #print(bgeneral[6])
-                    #print(resumen)
-                    #print(resumen[m+3])
-                    os.system("printf '\t"+ctas[j]+"\t"+str(resumen[m+3])+"\n' > CER.txt")
+#                if(ids[j+1]==51001):
+#                    print(m)
+#                    print(resumen)
+#                    print(resumen[m])
+#                    utilBruta=bgeneral[5]-resumen[m+3]
+#                    os.system("printf '\nCosto venta\t\t"+str(resumen[m+3])+"\nUtilidad bruta\t"+str(utilBruta)+"\nGastos fijos\n' > CER.txt")
+             #   if(ids[j+1]>60000):
+              #      os.system=("printf \'\t\t"+str(bgeneral[6])+"\n\'")
         pqy=prequery
         j+=1
-    UADI=utilBruta-bgeneral[6]
+    UADI=utilBruta-bgeneral[7]
+#    print("--------------------")
+#    print(str(UADI))
     impRenta=UADI*0.25
-    os.system("printf 'Utilidad antes de impuesto\t"+str(UADI)+"\nImpuesto a la renta(25%)\t"+str(impRenta)+"\nResultado del ejercicio\t"+str(UADI-impRenta)+"' > CER.txt")
+#    print(str(impRenta))
+#    print(str(UADI-impRenta))
+#    print(str(UADI))
+    os.system("printf 'Utilidad antes de impuesto\t"+str(UADI)+"\nImpuesto a la renta(25)\t"+str(impRenta)+"\nResultado del ejercicio\t"+str(UADI-impRenta)+"' >> CER.txt")
     pqy=prequery
     print("Generando archivo balance 8 columnas...")
     os.system(prequery+' \"select * from b8columna;\" -v -v -v > balance.txt')

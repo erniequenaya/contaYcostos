@@ -1,0 +1,8 @@
+Estado de resultado
+Ventas		7000000
+Costo venta		4000000
+Utilidad bruta	3000000
+Gastos fijos
+Utilidad antes de impuesto	2950000
+Impuesto a la renta(25)	737500.0
+Resultado del ejercicio	2212500.0
