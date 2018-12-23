@@ -1,0 +1,48 @@
+03012018
+Registro aporte de capital por Juan Olguin
+Efectivo 10000000
+Capital 10000000
+04012018
+Compra de equipos computacionales
+Mobiliario 294118 ICF 55882
+Efectivo 350000
+05012018
+Compra de mobiliario factura 2354
+Mobiliario 500000 ICF 66500
+Efectivo 566500
+05012018
+Compra de 50 unidades de mercaderia a 100000c/u
+Mercaderia 5000000 ICF 950000
+Efectivo 5950000
+19012018
+Venta de 20 unidades de mercaderia con recargo del 50 por ciento
+Efectivo 3000000
+IDF 478992 ventas 2521008
+19012018
+Costo de venta de 20 unidades de mercaderia CPP
+CV 2000000
+Mercaderia 2000000
+20012018
+Recibo credito por banco de chile pagadera 24 cuotas de 833333
+Banco 20000000
+CxPIFLP 10833334 CxPIFCP 9166666
+21012018
+Compra de 20 unidades de mercaderia a 150000c/u
+Mercaderia 3000000 ICF 570000
+Banco 3570000
+22012018
+Venta de 20 unidades de mercaderia con recargo del 100 por ciento
+Efectivo 2284800 Banco 285600 CxC 285600
+IDF 456000 ventas 2400000
+22012018
+Costo de venta de 20 unidades de mercaderia CPP
+CV 1200000
+Mercaderia 1200000
+30012018
+Se cancela arriendo de local comercial
+Arriendo 50000
+Efectivo 50000
+31012018
+Retiro por parte del dueño
+CuentaParticular 100000
+Efectivo 100000

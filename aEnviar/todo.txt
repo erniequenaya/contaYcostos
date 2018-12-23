@@ -1,0 +1,413 @@
+############ PLAN DE CUENTA ##########################
+
+11001:Efectivo
+11002:Banco
+11003:Mercaderia
+11004:ICF
+11005:CxC
+11006:CuentaParticular
+12002:Mobiliario
+21001:CxPIFCP (instituciones financieras a corto plazo)
+21002:CxP
+21003:IDF
+22001:CxPIFLP (instituciones financieras a largo plazo)
+31001:Capital
+32001:Utilidaddelejecicio
+41001:ventas
+51001:CV
+51002:Arriendo
+
+############ ASIENTOS (FECHA, GLOSA, DEBE, HABER) ##########################
+
+03012018
+Registro aporte de capital por Juan Olguin
+Efectivo 10000000
+Capital 10000000
+
+04012018
+Compra de equipos computacionales
+Mobiliario 294118 ICF 55882
+Efectivo 350000
+
+05012018
+Compra de mobiliario factura 2354
+Mobiliario 500000 ICF 66500
+Efectivo 566500
+
+05012018
+Compra de 50 unidades de mercaderia a 100000c/u
+Mercaderia 5000000 ICF 950000
+Efectivo 5950000
+
+19012018
+Venta de 20 unidades de mercaderia con recargo del 50 por ciento
+Efectivo 3000000
+IDF 478992 ventas 2521008
+
+19012018
+Costo de venta de 20 unidades de mercaderia CPP
+CV 2000000
+Mercaderia 2000000
+
+20012018
+Recibo credito por banco de chile pagadera 24 cuotas de 833333
+Banco 20000000
+CxPIFLP 10833334 CxPIFCP 9166666
+
+21012018
+Compra de 20 unidades de mercaderia a 150000c/u
+Mercaderia 3000000 ICF 570000
+Banco 3570000
+
+22012018
+Venta de 20 unidades de mercaderia con recargo del 100 por ciento
+Efectivo 2284800 Banco 285600 CxC 285600
+IDF 456000 ventas 2400000
+
+22012018
+Costo de venta de 20 unidades de mercaderia CPP
+CV 1200000
+Mercaderia 1200000
+
+30012018
+Se cancela arriendo de local comercial
+Arriendo 50000
+Efectivo 50000
+
+31012018
+Retiro por parte del dueño
+CuentaParticular 100000
+Efectivo 100000
+
+############ LIBRO DIARIO ##########################
+
+LOS ASIENTOS SON AGRUPADOS POR IDMOV
+--------------
+select * from diario
+--------------
+
++-------+----------+-------------------------------------------------------------------+
+| idMov | fecha    | glosa                                                             |
++-------+----------+-------------------------------------------------------------------+
+|    85 |  3012018 | Registro aporte de capital por Juan Olguin                        |
+|    86 |  4012018 | Compra de equipos computacionales                                 |
+|    87 |  5012018 | Compra de mobiliario factura 2354                                 |
+|    88 |  5012018 | Compra de 50 unidades de mercaderia a 100000c/u                   |
+|    89 | 19012018 | Venta de 20 unidades de mercaderia con recargo del 50 por ciento  |
+|    90 | 19012018 | Costo de venta de 20 unidades de mercaderia CPP                   |
+|    91 | 20012018 | Recibo credito por banco de chile pagadera 24 cuotas de 833333    |
+|    92 | 21012018 | Compra de 20 unidades de mercaderia a 150000c/u                   |
+|    93 | 22012018 | Venta de 20 unidades de mercaderia con recargo del 100 por ciento |
+|    94 | 22012018 | Costo de venta de 20 unidades de mercaderia CPP                   |
+|    95 | 30012018 | Se cancela arriendo de local comercial                            |
+|    96 | 31012018 | Retiro por parte del dueño                                        |
++-------+----------+-------------------------------------------------------------------+
+12 rows in set (0.00 sec)
+
+Bye
+--------------
+select * from asientos
+--------------
+
++-----+-------+------------------+-------------+----------+----------+
+| id  | idMov | cuentaDebe       | cuentaHaber | debe     | haber    |
++-----+-------+------------------+-------------+----------+----------+
+| 224 |    85 | Efectivo         |             | 10000000 |        0 |
+| 225 |    85 |                  | Capital     |        0 | 10000000 |
+| 226 |    86 | Mobiliario       |             |   294118 |        0 |
+| 227 |    86 | ICF              |             |    55882 |        0 |
+| 228 |    86 |                  | Efectivo    |        0 |   350000 |
+| 229 |    87 | Mobiliario       |             |   500000 |        0 |
+| 230 |    87 | ICF              |             |    66500 |        0 |
+| 231 |    87 |                  | Efectivo    |        0 |   566500 |
+| 232 |    88 | Mercaderia       |             |  5000000 |        0 |
+| 233 |    88 | ICF              |             |   950000 |        0 |
+| 234 |    88 |                  | Efectivo    |        0 |  5950000 |
+| 235 |    89 | Efectivo         |             |  3000000 |        0 |
+| 236 |    89 |                  | IDF         |        0 |   478992 |
+| 237 |    89 |                  | ventas      |        0 |  2521008 |
+| 238 |    90 | CV               |             |  2000000 |        0 |
+| 239 |    90 |                  | Mercaderia  |        0 |  2000000 |
+| 240 |    91 | Banco            |             | 20000000 |        0 |
+| 241 |    91 |                  | CxPIFLP     |        0 | 10833334 |
+| 242 |    91 |                  | CxPIFCP     |        0 |  9166666 |
+| 243 |    92 | Mercaderia       |             |  3000000 |        0 |
+| 244 |    92 | ICF              |             |   570000 |        0 |
+| 245 |    92 |                  | Banco       |        0 |  3570000 |
+| 246 |    93 | Efectivo         |             |  2284800 |        0 |
+| 247 |    93 | Banco            |             |   285600 |        0 |
+| 248 |    93 | CxC              |             |   285600 |        0 |
+| 249 |    93 |                  | IDF         |        0 |   456000 |
+| 250 |    93 |                  | ventas      |        0 |  2400000 |
+| 251 |    94 | CV               |             |  1200000 |        0 |
+| 252 |    94 |                  | Mercaderia  |        0 |  1200000 |
+| 253 |    95 | Arriendo         |             |    50000 |        0 |
+| 254 |    95 |                  | Efectivo    |        0 |    50000 |
+| 255 |    96 | CuentaParticular |             |   100000 |        0 |
+| 256 |    96 |                  | Efectivo    |        0 |   100000 |
++-----+-------+------------------+-------------+----------+----------+
+33 rows in set (0.00 sec)
+
+Bye
+
+############ CUENTAS T ##########################
+
+Arriendo
+-----------------
+debe	haber
+50000	0
+-----------------
+50000	0	
+-----------------
+50000
+
+
+Banco
+-----------------
+debe	haber
+20000000	0
+0	3570000
+285600	0
+-----------------
+20285600	3570000	
+-----------------
+16715600
+
+
+CuentaParticular
+-----------------
+debe	haber
+100000	0
+-----------------
+100000	0	
+-----------------
+100000
+
+
+CV
+-----------------
+debe	haber
+2000000	0
+1200000	0
+-----------------
+3200000	0	
+-----------------
+3200000
+
+
+CxC
+-----------------
+debe	haber
+285600	0
+-----------------
+285600	0	
+-----------------
+285600
+
+
+Efectivo
+-----------------
+debe	haber
+10000000	0
+0	350000
+0	566500
+0	5950000
+3000000	0
+2284800	0
+0	50000
+0	100000
+-----------------
+15284800	7016500	
+-----------------
+8268300
+
+
+ICF
+-----------------
+debe	haber
+55882	0
+66500	0
+950000	0
+570000	0
+-----------------
+1642382	0	
+-----------------
+1642382
+
+
+Mercaderia
+-----------------
+debe	haber
+5000000	0
+0	2000000
+3000000	0
+0	1200000
+-----------------
+8000000	3200000	
+-----------------
+4800000
+
+
+Mobiliario
+-----------------
+debe	haber
+294118	0
+500000	0
+-----------------
+794118	0	
+-----------------
+794118
+
+
+Capital
+-----------------
+debe	haber
+0	10000000
+-----------------
+0	10000000	
+-----------------
+	10000000
+
+
+CxPIFCP
+-----------------
+debe	haber
+0	9166666
+-----------------
+0	9166666	
+-----------------
+	9166666
+
+
+CxPIFLP
+-----------------
+debe	haber
+0	10833334
+-----------------
+0	10833334	
+-----------------
+	10833334
+
+
+IDF
+-----------------
+debe	haber
+0	478992
+0	456000
+-----------------
+0	934992	
+-----------------
+	934992
+
+
+ventas
+-----------------
+debe	haber
+0	2521008
+0	2400000
+-----------------
+0	4921008	
+-----------------
+	4921008
+
+############ BALANCE 8 COLUMNAS ##########################
+
+--------------
+select * from b8columna
+--------------
+
++----------+------------------+----------+----------+----------+----------+----------+----------+---------+----------+
+| idcuenta | nomcuenta        | debe     | haber    | deudor   | acreedor | activo   | pasivo   | perdida | ganancia |
++----------+------------------+----------+----------+----------+----------+----------+----------+---------+----------+
+|    11001 | Efectivo         | 15284800 |  7016500 |  8268300 |        0 |  8268300 |        0 |       0 |        0 |
+|    11002 | Banco            | 20285600 |  3570000 | 16715600 |        0 | 16715600 |        0 |       0 |        0 |
+|    11003 | Mercaderia       |  8000000 |  3200000 |  4800000 |        0 |  4800000 |        0 |       0 |        0 |
+|    11004 | ICF              |  1642382 |        0 |  1642382 |        0 |  1642382 |        0 |       0 |        0 |
+|    11005 | CxC              |   285600 |        0 |   285600 |        0 |   285600 |        0 |       0 |        0 |
+|    11006 | CuentaParticular |   100000 |        0 |   100000 |        0 |   100000 |        0 |       0 |        0 |
+|    12002 | Mobiliario       |   794118 |        0 |   794118 |        0 |   794118 |        0 |       0 |        0 |
+|    21001 | CxPIFCP          |        0 |  9166666 |        0 |  9166666 |        0 |  9166666 |       0 |        0 |
+|    21003 | IDF              |        0 |   934992 |        0 |   934992 |        0 |   934992 |       0 |        0 |
+|    22001 | CxPIFLP          |        0 | 10833334 |        0 | 10833334 |        0 | 10833334 |       0 |        0 |
+|    31001 | Capital          |        0 | 10000000 |        0 | 10000000 |        0 | 10000000 |       0 |        0 |
+|    41001 | ventas           |        0 |  4921008 |        0 |  4921008 |        0 |        0 |       0 |  4921008 |
+|    51001 | CV               |  3200000 |        0 |  3200000 |        0 |        0 |        0 | 3200000 |        0 |
+|    51002 | Arriendo         |    50000 |        0 |    50000 |        0 |        0 |        0 |   50000 |        0 |
++----------+------------------+----------+----------+----------+----------+----------+----------+---------+----------+
+14 rows in set (0.00 sec)
+
+Bye
+--------------
+select sum(debe) as totalDebe, sum(haber) as totalHaberes, sum(deudor) as totalDeudor, sum(acreedor) as totalAcreedor, sum(activo) as totalActivos, sum(pasivo) as totalPasivos, sum(perdida) as totalPerdida, sum(ganancia) as totalGanancia from b8columna
+--------------
+
++-----------+--------------+-------------+---------------+--------------+--------------+--------------+---------------+
+| totalDebe | totalHaberes | totalDeudor | totalAcreedor | totalActivos | totalPasivos | totalPerdida | totalGanancia |
++-----------+--------------+-------------+---------------+--------------+--------------+--------------+---------------+
+|  49642500 |     49642500 |    35856000 |      35856000 |     32606000 |     30934992 |      3250000 |       4921008 |
++-----------+--------------+-------------+---------------+--------------+--------------+--------------+---------------+
+1 row in set (0.00 sec)
+
+Bye
+--------------
+SELECT (SELECT sum(activo) FROM b8columna) - (SELECT SUM(pasivo) from b8columna) as ResultadoDelEjercicio, (SELECT sum(ganancia) FROM b8columna) - (SELECT SUM(perdida) from b8columna) as ResultadoDelEjercicio2
+--------------
+
++-----------------------+------------------------+
+| ResultadoDelEjercicio | ResultadoDelEjercicio2 |
++-----------------------+------------------------+
+|               1671008 |                1671008 |
++-----------------------+------------------------+
+1 row in set (0.01 sec)
+
+Bye
+
+
+############ BALANCE GENERAL ##########################
+
+Balance general
+Activos
+Activo corriente
+	Efectivo		8268300
+	Banco			16715600
+	Mercaderia		4800000
+	ICF			1642382
+	CxC			285600
+	CuentaParticular	100000
+Total activo corriente 		31811882
+Activo no corriente
+	Mobiliario		794118
+Total activo fijo 		794118
+---------------------------------------------------
+Total activo			32606000
+
+Pasivo corriente
+	CxPIFCP			9166666
+	IDF			934992
+Total pasivo corriente 		10101658
+Pasivo a largo plazo 
+	CxPIFLP			10833334
+Total pasivo a largo plazo 	10833334
+---------------------------------------------------
+Total pasivo			20934992
+
+Patrimonio
+	Capital			10000000
+Utilidad del ejercicio		1671008
+Total patrimonio		11671008
+---------------------------------------------------
+Total pasivo y patrimonio	32606000
+
+############ ESTADO DE RESULTADO ##########################
+
+Estado de resultado
+Ventas				4921008
+Costo venta			3200000
+---------------------------------------------------
+Utilidad bruta			1721008
+Gastos fijos			 50000 
+---------------------------------------------------
+Utilidad antes de impuesto	1671008
+Impuesto a la renta(24)		401041.92
+---------------------------------------------------
+Resultado del ejercicio		1269966.08

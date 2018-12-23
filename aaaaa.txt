@@ -1,0 +1,9 @@
+20012018
+Recibo credito por banco de chile pagadera 24 cuotas de 833333
+Banco 20000000
+CxPInstitucionesFinancierasL/P 20000000
+20012018
+Monto a pagar este año de credito L/P
+CxPInstitucionesFinancierasL/P 9166666
+CxPInstitucionesFinancierasC/P 9166666
+21012018
